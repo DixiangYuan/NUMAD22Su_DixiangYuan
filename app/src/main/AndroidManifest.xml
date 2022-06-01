@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ClickyActivity"></activity>
+        <activity android:name=".InfoActivity"></activity>
 
     </application>
 

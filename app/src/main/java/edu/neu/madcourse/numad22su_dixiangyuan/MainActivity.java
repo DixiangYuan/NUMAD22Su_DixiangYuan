@@ -12,6 +12,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     Button aboutMe;
     Button clicky;
+    Button linkCollector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +23,22 @@ public class MainActivity extends AppCompatActivity {
         aboutMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Name: Dixiang Yuan\nEmail: yuan.di@northeastern.edu",
-                        Toast.LENGTH_LONG).show();
+                Intent i = new Intent(MainActivity.this, InfoActivity.class);
+                startActivity(i);
             }
         });
 
         clicky = findViewById(R.id.buttonClicky);
         clicky.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, ClickyActivity.class);
+                startActivity(i);
+            }
+        });
+
+        linkCollector = findViewById(R.id.linkCollectorBTN);
+        linkCollector.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, ClickyActivity.class);
