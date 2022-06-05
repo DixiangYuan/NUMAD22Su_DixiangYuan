@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">NUMAD22Su_DixiangYuan</string>
     <string name="about_me">About Me</string>
+    <string name="name">NAME</string>
+    <string name="url">URL</string>
+    <string name="upload">UPLOAD</string>
+    <string name="cancel">CANCEL</string>
+    <string name="http">http://</string>
 </resources>

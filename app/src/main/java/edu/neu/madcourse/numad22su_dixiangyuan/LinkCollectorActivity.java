@@ -1,18 +1,36 @@
 package edu.neu.madcourse.numad22su_dixiangyuan;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LinkCollectorActivity extends AppCompatActivity {
+public class LinkCollectorActivity extends AppCompatActivity
+        implements FABDialog.NoticeDialogListener {
     RecyclerView linkListRecyclerView;
-
     List<Link> linkList;
+    FloatingActionButton floatingActionButton;
+    View dialogView;
+
+    private EditText inputName;
+    private EditText inputURL;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,22 +40,8 @@ public class LinkCollectorActivity extends AppCompatActivity {
         //Instantiate the arraylist
         linkList = new ArrayList<>();
 
-        //Adding a new person object to the personList arrayList
-        List<String> sampleNames = new ArrayList<>(List.of("Aarav", "Beth","Chun","Dasya"));
-        List<String> sampleLinks = new ArrayList<>(List.of("Aarav1", "Beth2","Chun3","Dasya4"));
-
-
-        for (int i = 0; i < sampleNames.size(); i++) {
-            linkList.add(new Link(sampleNames.get(i), sampleLinks.get(i)));
-        }
-
         linkListRecyclerView = findViewById(R.id.link_recycle_view);
 
-        // In this example, the size of the RecyclerView does not change if the content changes,
-        // so we let Android know that it will not change, which allows some optimizations
-        // when items are added or deleted.
-        //  The RecyclerView can still change size for other reasons.
-        // (For example, it might inherit size from a parent in the layout that gets resized.)
         linkListRecyclerView.setHasFixedSize(true);
 
         //This defines the way in which the RecyclerView is oriented
@@ -45,5 +49,35 @@ public class LinkCollectorActivity extends AppCompatActivity {
 
         //Associates the adapter with the RecyclerView
         linkListRecyclerView.setAdapter(new LinkAdaptor(linkList, this));
+
+        floatingActionButton = findViewById(R.id.floatingActionButton);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addLink();
+            }
+        });
     }
+
+    public void addLink() {
+        DialogFragment newFragment = new FABDialog();
+        newFragment.show(getSupportFragmentManager(), "Enter link");
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog, String name, String url) {
+        //dialogView = findViewById(R.id.link_adding_fab);
+        //inputName = dialogView.findViewById(R.id.name);
+        //String stringName = inputName.getText().toString();
+        Link addOneLink = new Link(name, url);
+        if (name.isEmpty() || name == null || url.isEmpty() || url == null) {
+            Snackbar.make(linkListRecyclerView,"Neither name or URL can be empty",Snackbar.LENGTH_SHORT).show();
+        } else if (addOneLink.isValid() != false) {
+            linkList.add(addOneLink);
+            Snackbar.make(linkListRecyclerView,"A new link uploaded",Snackbar.LENGTH_SHORT).show();
+        } else {
+            Snackbar.make(linkListRecyclerView,"The URL is invalid",Snackbar.LENGTH_SHORT).show();
+        }
+    }
+
 }
