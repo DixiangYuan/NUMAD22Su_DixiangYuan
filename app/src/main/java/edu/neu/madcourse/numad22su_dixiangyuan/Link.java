@@ -31,8 +31,12 @@ public class Link {
     }
 
     public boolean isValid() {
+        String completeLink = link;
+        if (!completeLink.startsWith("http://") && !completeLink.startsWith("https://")) {
+            completeLink = "http://" + completeLink;
+        }
         try {
-            new URL(link).toURI(); // Check whether the format of the input
+            new URL(completeLink).toURI(); // Check whether the format of the input
         } catch (MalformedURLException | URISyntaxException e) { // Wrong format or invalid error
             return false;
         }
