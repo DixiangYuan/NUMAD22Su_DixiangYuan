@@ -22,14 +22,17 @@ public class FABDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
 
+
         builder.setView(inflater.inflate(R.layout.link_adding_fab, null))
                 .setPositiveButton(R.string.upload, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
+                        // Get user input
                         inputName = ((AlertDialog)dialog).findViewById(R.id.name);
                         inputURL = ((AlertDialog)dialog).findViewById(R.id.link);
                         String name = inputName.getText().toString();
                         String url = inputURL.getText().toString();
+
                         listener.onDialogPositiveClick(FABDialog.this, name, url);
                     }
                 })
@@ -47,12 +50,9 @@ public class FABDialog extends DialogFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        // Verify that the host activity implements the callback interface
         try {
-            // Instantiate the NoticeDialogListener so we can send events to the host
             listener = (NoticeDialogListener) context;
-        } catch (ClassCastException e) {
-            // The activity doesn't implement the interface, throw exception
+        } catch (ClassCastException e) { // Catch error if the context cannot implement
             throw new ClassCastException("Cannot implement NoticeDialogListener");
         }
     }

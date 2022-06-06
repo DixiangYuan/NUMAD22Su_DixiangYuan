@@ -38,6 +38,8 @@ public class LinkAdaptor extends RecyclerView.Adapter<LinkViewHolder> {
                 if (!url.startsWith("http://") && !url.startsWith("https://")) {
                     url = "http://" + url;
                 }
+
+                // Open new web by clicking the link
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 context.startActivity(browserIntent);
             }

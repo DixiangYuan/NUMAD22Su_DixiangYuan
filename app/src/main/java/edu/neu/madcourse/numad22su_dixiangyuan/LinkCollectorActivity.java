@@ -37,19 +37,14 @@ public class LinkCollectorActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.link_collector);
 
-        //Instantiate the arraylist
         linkList = new ArrayList<>();
 
         linkListRecyclerView = findViewById(R.id.link_recycle_view);
-
         linkListRecyclerView.setHasFixedSize(true);
-
-        //This defines the way in which the RecyclerView is oriented
         linkListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        //Associates the adapter with the RecyclerView
         linkListRecyclerView.setAdapter(new LinkAdaptor(linkList, this));
 
+        // Set up fab
         floatingActionButton = findViewById(R.id.floatingActionButton);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,9 +61,6 @@ public class LinkCollectorActivity extends AppCompatActivity
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog, String name, String url) {
-        //dialogView = findViewById(R.id.link_adding_fab);
-        //inputName = dialogView.findViewById(R.id.name);
-        //String stringName = inputName.getText().toString();
         Link addOneLink = new Link(name, url);
         if (name.isEmpty() || name == null || url.isEmpty() || url == null) {
             Snackbar.make(linkListRecyclerView,"Neither name or URL can be empty",Snackbar.LENGTH_SHORT).show();
