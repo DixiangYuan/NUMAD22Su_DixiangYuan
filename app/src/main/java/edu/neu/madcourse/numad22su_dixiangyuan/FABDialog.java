@@ -47,6 +47,7 @@ public class FABDialog extends DialogFragment {
     public interface NoticeDialogListener {
         public void onDialogPositiveClick(DialogFragment dialog, String name, String url);
     }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

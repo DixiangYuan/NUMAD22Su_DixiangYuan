@@ -6,4 +6,7 @@
     <string name="upload">UPLOAD</string>
     <string name="cancel">CANCEL</string>
     <string name="http">http://</string>
+    <string name="dissmissActivity">Are U sure that you want to terminate finding primes and dissmiss this activity?</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
 </resources>

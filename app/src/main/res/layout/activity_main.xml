@@ -51,4 +51,15 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonClicky"
         app:layout_constraintVertical_bias="0.085" />
 
+    <Button
+        android:id="@+id/findPrimesBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FIND PRIMES"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linkCollectorBTN"
+        app:layout_constraintVertical_bias="0.129" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
