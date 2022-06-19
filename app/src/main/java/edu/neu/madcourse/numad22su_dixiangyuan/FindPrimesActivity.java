@@ -18,17 +18,13 @@ import androidx.fragment.app.DialogFragment;
 import com.google.android.material.snackbar.Snackbar;
 
 public class FindPrimesActivity extends AppCompatActivity implements Varification.NoticeDialogListener{
-    private static final String TAG = "This is ";
     int numberChecked = 2;
     int primeNumber = 2;
     TextView checkedNumber;
     TextView lastestPrime;
     Boolean runSwitch = false;
-    Button startBtn;
-    Boolean stopBtn;
 
     private Handler textHandler = new Handler();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +33,6 @@ public class FindPrimesActivity extends AppCompatActivity implements Varificatio
 
         checkedNumber = findViewById(R.id.checkedNumber);
         lastestPrime = findViewById(R.id.primeNumber);
-        Log.e("This is ", "onCreate");
-        //startBtn.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View v) {
-        //        runThread(v);
-        //    }
-        //});
     }
 
 
@@ -61,7 +50,6 @@ public class FindPrimesActivity extends AppCompatActivity implements Varificatio
 
    public void runThread(View view) {
         if (runSwitch == false) {
-            Log.e("This is ", "runThread");
             numberChecked = 2;
             primeNumber = 2;
             runSwitch = true;
@@ -71,7 +59,6 @@ public class FindPrimesActivity extends AppCompatActivity implements Varificatio
    }
 
     public void stopThread(View view) {
-        Log.e("This is ", "stopThread");
         runSwitch = false;
     }
 
@@ -81,7 +68,6 @@ public class FindPrimesActivity extends AppCompatActivity implements Varificatio
     }
 
     class PrimeThread extends Thread {
-
         @Override
         public void run() {
             while (runSwitch) {

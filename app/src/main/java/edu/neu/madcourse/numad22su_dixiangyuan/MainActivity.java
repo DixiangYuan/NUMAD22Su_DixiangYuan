@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     Button clicky;
     Button linkCollector;
     Button findPrimes;
+    Button locator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +52,17 @@ public class MainActivity extends AppCompatActivity {
         findPrimes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("sadsa", "dsadsa");
                 Intent i = new Intent(MainActivity.this, FindPrimesActivity.class);
+                startActivity(i);
+            }
+        });
+
+        locator = findViewById(R.id.locatorBtn);
+        locator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Log.e("sadsa", "dsadsa");
+                Intent i = new Intent(MainActivity.this, LocatorActivity.class);
                 startActivity(i);
             }
         });

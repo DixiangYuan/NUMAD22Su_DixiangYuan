@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="edu.neu.madcourse.numad22su_dixiangyuan">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -26,6 +30,7 @@
         <activity android:name=".InfoActivity"></activity>
         <activity android:name=".LinkCollectorActivity"></activity>
         <activity android:name=".FindPrimesActivity"></activity>
+        <activity android:name=".LocatorActivity"></activity>
 
     </application>
 
