@@ -24,7 +24,7 @@ public class LocatorActivity extends AppCompatActivity {
     private Boolean runSwitch = true;
     private float distance;
     private Location savedLocation = null;
-    private int precision = 4;
+    private int precision = 2;
 
 
     private Handler textHandler = new Handler();
@@ -69,18 +69,12 @@ public class LocatorActivity extends AppCompatActivity {
             Location currentPassiveLocation = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
             if (currentNetworkLocation != null) {
                 Log.e("12", "44444444");
-                locatorTV.setText(String.format(String.format("Latitude: %%.%df\nLongitude: %%.%df",
-                                precision, precision),
-                        currentNetworkLocation.getLatitude(), currentNetworkLocation.getLongitude()));
                 if (savedLocation != null) {
                     distance += currentNetworkLocation.distanceTo(savedLocation);
                 }
                 savedLocation = currentNetworkLocation;
             } else if (currentPassiveLocation != null) {
                 Log.e("12", "555555555");
-                locatorTV.setText(String.format(String.format("Latitude: %%.%df\nLongitude: %%.%df",
-                                precision, precision),
-                        currentPassiveLocation.getLatitude(), currentPassiveLocation.getLongitude()));
                 if (savedLocation != null) {
                     distance += currentPassiveLocation.distanceTo(savedLocation);
                 }
@@ -111,10 +105,13 @@ public class LocatorActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         distanceTV.setText(String.valueOf(distance));
+                        locatorTV.setText(String.format(String.format("Latitude: %%.%df\nLongitude: %%.%df",
+                                        precision, precision),
+                                savedLocation.getLatitude(), savedLocation.getLongitude()));
                     }
                 });
                 try{
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -129,14 +126,23 @@ public class LocatorActivity extends AppCompatActivity {
 
     public void increasePre(View v) {
         Log.e("12", "in");
-        precision++;
-        refresh();
+        if(precision<7) {
+            precision++;
+            refresh();
+        } else {
+            Snackbar.make(v, "Precision now is the highest.",
+                    Snackbar.LENGTH_LONG).setAction("Action", null).show();
+        }
     }
 
     public void decreasePre(View v) {
-        Log.e("12", "de");
-        precision--;
-        refresh();
+        if(precision>0) {
+            precision--;
+            refresh();
+        } else {
+            Snackbar.make(v, "Precision now is the lowest.",
+                    Snackbar.LENGTH_LONG).setAction("Action", null).show();
+        }
     }
 
     public void refresh() {
