@@ -24,7 +24,7 @@ public class LocatorActivity extends AppCompatActivity {
     private Boolean runSwitch = true;
     private float distance;
     private Location savedLocation = null;
-    private int precision = 2;
+    private int precision = 6;
 
 
     private Handler textHandler = new Handler();

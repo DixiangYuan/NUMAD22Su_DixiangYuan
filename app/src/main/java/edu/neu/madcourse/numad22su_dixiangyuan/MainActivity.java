@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     Button linkCollector;
     Button findPrimes;
     Button locator;
+    Button webService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Log.e("sadsa", "dsadsa");
                 Intent i = new Intent(MainActivity.this, LocatorActivity.class);
+                startActivity(i);
+            }
+        });
+
+        webService = findViewById(R.id.serviceBtn);
+        webService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("test", "11111");
+                Intent i = new Intent(MainActivity.this, WebServiceActivity.class);
                 startActivity(i);
             }
         });

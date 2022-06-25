@@ -5,6 +5,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
@@ -31,6 +33,7 @@
         <activity android:name=".LinkCollectorActivity"></activity>
         <activity android:name=".FindPrimesActivity"></activity>
         <activity android:name=".LocatorActivity"></activity>
+        <activity android:name=".WebServiceActivity"></activity>
 
     </application>
 
