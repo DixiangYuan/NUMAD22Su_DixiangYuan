@@ -16,6 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONObject;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,7 +29,7 @@ import java.net.URL;
 
 public class WebServiceActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String TAG = "WebServiceActivity";
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     private Button catBtn;
     private Button helloCatBtn;
@@ -51,6 +54,23 @@ public class WebServiceActivity extends AppCompatActivity implements View.OnClic
 
         catBtn.setOnClickListener(this);
         helloCatBtn.setOnClickListener(this);
+
+        addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
+                textHandler.post(new Runnable() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void run() {
+                        loadingTV.setText("Your cat is here ;)");
+                    }
+                });
+            }
+        });
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        this.pcs.addPropertyChangeListener(listener);
     }
 
     @Override
@@ -210,6 +230,7 @@ public class WebServiceActivity extends AppCompatActivity implements View.OnClic
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                if(loadingSwitch) break;
 
                 textHandler.post(new Runnable() {
                     @SuppressLint("SetTextI18n")
@@ -223,6 +244,8 @@ public class WebServiceActivity extends AppCompatActivity implements View.OnClic
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                if(loadingSwitch) break;
+
                 textHandler.post(new Runnable() {
                     @SuppressLint("SetTextI18n")
                     @Override
