@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,6 +34,8 @@ public class WebServiceActivity extends AppCompatActivity implements View.OnClic
 
     private Button catBtn;
     private Button helloCatBtn;
+    private Button genCatBtn;
+    private EditText catETB;
     private TextView loadingTV;
     private ImageView catImageView;
     private Boolean  loadingSwitch = true;
@@ -47,13 +50,16 @@ public class WebServiceActivity extends AppCompatActivity implements View.OnClic
 
         catBtn = findViewById(R.id.catBtn);
         helloCatBtn = findViewById(R.id.helloCatBtn);
+        genCatBtn = findViewById(R.id.genCatBtn);
+        catETB = findViewById(R.id.catETB);
         loadingTV = findViewById(R.id.loadingTV);
-        Log.e("test", "22222");
+        //Log.e("test", "22222");
         catImageView = findViewById(R.id.catImageView);
 
 
         catBtn.setOnClickListener(this);
         helloCatBtn.setOnClickListener(this);
+        genCatBtn.setOnClickListener(this);
 
         addPropertyChangeListener(new PropertyChangeListener() {
             @Override
@@ -90,8 +96,23 @@ public class WebServiceActivity extends AppCompatActivity implements View.OnClic
 
             case R.id.helloCatBtn:
                 try {
-                    Log.e("test", "555555");
+                    //Log.e("test", "555555");
                     url = new URL("https://cataas.com/cat/says/hello");
+                    runThread(v);
+                    runCatThread(v);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                break;
+
+            case R.id.genCatBtn:
+                try {
+                    String userInput = catETB.getText().toString();
+                    if (userInput.isEmpty() || userInput == null) {
+                        userInput = "Please enter at least one letter";
+                    }
+                    //Log.e("test", "333333");
+                    url = new URL("https://cataas.com/cat/says/" + userInput);
                     runThread(v);
                     runCatThread(v);
                 } catch (MalformedURLException e) {
@@ -102,7 +123,7 @@ public class WebServiceActivity extends AppCompatActivity implements View.OnClic
     }
 
     public void runCatThread(View view) {
-        Log.e("test", "6666666");
+        //Log.e("test", "6666666");
         catThread runIt = new catThread();
         runIt.start();
     }
@@ -110,43 +131,43 @@ public class WebServiceActivity extends AppCompatActivity implements View.OnClic
     private class catThread extends Thread {
         @Override
         public void run() {
-            Log.e("test", "777777");
+            //Log.e("test", "777777");
             HttpURLConnection conn = null;
             try {
-                Log.e("test", "888888");
+                //Log.e("test", "888888");
                 conn = (HttpURLConnection) url.openConnection();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Log.e("test", "URL is "+url.toString());
+            //Log.e("test", "URL is "+url.toString());
             try {
-                Log.e("test", "999999");
+                //Log.e("test", "999999");
                 conn.setRequestMethod("GET");
             } catch (ProtocolException e) {
                 e.printStackTrace();
             }
-            Log.e("test", "1010101010");
+            //。Log.e("test", "1010101010");
             conn.setDoInput(true);
 
             try {
-                Log.e("test", "11 11");
+                //Log.e("test", "11 11");
                 conn.connect();
-                Log.e("test", "22 22");
+                //Log.e("test", "22 22");
             } catch (IOException e) {
-                Log.e("test", "2020");
+                //Log.e("test", "2020");
                 e.printStackTrace();
             } catch (Exception e) {
-                Log.e("test", e.getMessage());
+                //Log.e("test", e.getMessage());
                 e.printStackTrace();
             }
 
             // Read response.
-            Log.e("test", "1212");
+            //Log.e("test", "1212");
             InputStream inputStream = null;
             byte[] imageByte;
-            Log.e("test", "2121");
+            //Log.e("test", "2121");
             try {
-                Log.e("test", "1313");
+                //Log.e("test", "1313");
                 inputStream = conn.getInputStream();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -168,7 +189,7 @@ public class WebServiceActivity extends AppCompatActivity implements View.OnClic
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (Exception e) {
-                Log.e("test", e.getMessage());
+                //Log.e("test", e.getMessage());
                 e.printStackTrace();
             }
 
@@ -204,7 +225,7 @@ public class WebServiceActivity extends AppCompatActivity implements View.OnClic
 
 
     public void runThread(View view) {
-        Log.e("test", "333333");
+        //Log.e("test", "333333");
         if (loadingSwitch) {
             Log.e("test", "4444444");
             loadingSwitch = false;
@@ -269,6 +290,4 @@ public class WebServiceActivity extends AppCompatActivity implements View.OnClic
             });
         }
     }
-
-
 }

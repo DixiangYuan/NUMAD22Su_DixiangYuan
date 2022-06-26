@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.686"
+        app:layout_constraintVertical_bias="0.712"
         app:srcCompat="@android:drawable/divider_horizontal_bright" />
 
     <Button
@@ -38,7 +38,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.73" />
+        app:layout_constraintVertical_bias="0.28" />
 
     <TextView
         android:id="@+id/loadingTV"
@@ -47,6 +47,35 @@
         android:text="Click the button and get a cat picture"
         app:layout_constraintBottom_toTopOf="@+id/catImageView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/helloCatBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/helloCatBtn"
+        app:layout_constraintVertical_bias="0.878" />
+
+    <EditText
+        android:id="@+id/catETB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Enter some words"
+        app:layout_constraintBottom_toTopOf="@+id/loadingTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/helloCatBtn"
+        app:layout_constraintVertical_bias="0.196"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/genCatBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Generate Your own cat picture"
+        app:layout_constraintBottom_toTopOf="@+id/loadingTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/catETB"
+        app:layout_constraintVertical_bias="0.069" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
